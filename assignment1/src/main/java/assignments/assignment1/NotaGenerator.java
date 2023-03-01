@@ -1,7 +1,7 @@
 package assignments.assignment1;
 // Fikri Dhiya Ramadhana
 // 2206819533
-// Lab 02
+// TP01
 
 import java.util.Scanner;
 import java.time.*;
@@ -24,12 +24,14 @@ public class NotaGenerator {
                 // generate ID
                 System.out.println("================================");
                 System.out.println("Masukkan nama Anda: ");                 //meminta input String
-                String nama = input.nextLine();
+                String nama = input.next();
+                input.nextLine();
 
                 System.out.println("Masukkan nomor handphone Anda: ");
                 while (true) {                                                 //menggunakan while loop agar bisa berulang sampai input benar
-                    String nomorHP = input.nextLine();
-                    if (checkNum(nomorHP)==true){                              //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
+                    String nomorHP = input.next();
+                    input.nextLine();
+                    if (checkNum(nomorHP)){                              //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
                         System.out.println("ID Anda : " + generateId(nama, nomorHP));
                         break; 
                     } else {
@@ -40,13 +42,15 @@ public class NotaGenerator {
             } else if (choice.equals("2")) {                          //else if untuk generateNota
                 System.out.println("================================");
                 System.out.println("Masukkan nama Anda: ");
-                String nama = input.nextLine();                                 //meminta input String
+                String nama = input.next();                                     //meminta input String
+                input.nextLine();                                
 
                 System.out.println("Masukkan nomor handphone Anda: ");
                 String id = "";
                 while (true) {                                                  //menggunakan while loop agar bisa berulang sampai input benar
-                    String nomorHP = input.nextLine();                      
-                    if (checkNum(nomorHP)==true){                               //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
+                    String nomorHP = input.next();
+                    input.nextLine();                      
+                    if (checkNum(nomorHP)){                               //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
                         id = generateId(nama, nomorHP); 
                         break; 
                     } else {
@@ -77,7 +81,7 @@ public class NotaGenerator {
                 int berat = 0;
                 while (true){
                     String berat1 = input.nextLine();
-                    if (checkNum(berat1)==true){                                //menvalidasi input dengan checkNum karena agar tidak ada huruf dan input berat pertama merupakan string
+                    if (checkNum(berat1)){                                //menvalidasi input dengan checkNum karena agar tidak ada huruf dan input berat pertama merupakan string
                         berat = Integer.valueOf(berat1);                        //mengubah String menjadi int value
                         if (berat < 0){
                             System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
@@ -150,11 +154,22 @@ public class NotaGenerator {
             }
         }
         for (int i = 0; i < namaDepan.length();i++){
-            for (int j = 65; j < 91; j++){                                    //nested for loop untuk menjumlahkan nilai unicode huruf A - Z ke dalam sumChar
-                if (namaDepan.charAt(i)==j){                                  // dan dikurang dengan dengan 64 agar mendapat value sesuai kententuan A = 1, B = 2, C = 3, ... dst
-                    sumChar += (j - 64);
+            if (namaDepan.charAt(i) > 64 && namaDepan.charAt(i) < 91){
+                for (int j = 65; j < 91; j++){                                    //nested for loop untuk menjumlahkan nilai unicode huruf A - Z ke dalam sumChar
+                    if (namaDepan.charAt(i)==j){                                  // dan dikurang dengan dengan 64 agar mendapat value sesuai kententuan A = 1, B = 2, C = 3, ... dst
+                        sumChar += (j - 64);
+                    }
                 }
+            } else if (namaDepan.charAt(i) > 47 && namaDepan.charAt(i) < 58){
+                for (int j = 48; j < 58; j++){
+                    if (namaDepan.charAt(i)==j){                                   //nested for loop untuk menjumlahkan nilai unicode angka 0 - 9 ke dalam sumChar 
+                        sumChar += (j - 48);                                       //dan dikurang dengan nilai unicode 0 yaitu 48 agar mendapat value sesuai digit angka
+                    }
+                }
+            } else {
+                sumChar += 7;
             }
+                
         }
         checkSum = sumChar + sumNomor + 7;                                   //checkSum merupakan jumlah dari sumNomor dan sumChar
         String checkSumFormatted = Integer.toString(checkSum);               //mengubah int checkSum menjadi bentuk String agar dapat mereturn String
@@ -204,7 +219,9 @@ public class NotaGenerator {
     public static Boolean checkNum(String num){
         Boolean check = true;
         for (int i  = 0;i<num.length();i++){
-            if (Character.isAlphabetic(num.charAt(i))){
+            if (Character.isDigit(num.charAt(i))){
+                check = true;
+            } else {
                 check = false;
                 break;
             }
