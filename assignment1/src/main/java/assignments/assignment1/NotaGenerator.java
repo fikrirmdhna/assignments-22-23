@@ -24,13 +24,11 @@ public class NotaGenerator {
                 // generate ID
                 System.out.println("================================");
                 System.out.println("Masukkan nama Anda: ");                 //meminta input String
-                String nama = input.next();
-                input.nextLine();
+                String nama = input.nextLine();
 
                 System.out.println("Masukkan nomor handphone Anda: ");
                 while (true) {                                                 //menggunakan while loop agar bisa berulang sampai input benar
-                    String nomorHP = input.next();
-                    input.nextLine();
+                    String nomorHP = input.nextLine();
                     if (checkNum(nomorHP)){                              //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
                         System.out.println("ID Anda : " + generateId(nama, nomorHP));
                         break; 
@@ -42,14 +40,12 @@ public class NotaGenerator {
             } else if (choice.equals("2")) {                          //else if untuk generateNota
                 System.out.println("================================");
                 System.out.println("Masukkan nama Anda: ");
-                String nama = input.next();                                     //meminta input String
-                input.nextLine();                                
+                String nama = input.nextLine();                                      //meminta input String
 
                 System.out.println("Masukkan nomor handphone Anda: ");
                 String id = "";
                 while (true) {                                                  //menggunakan while loop agar bisa berulang sampai input benar
-                    String nomorHP = input.next();
-                    input.nextLine();                      
+                    String nomorHP = input.nextLine();                    
                     if (checkNum(nomorHP)){                               //memanggil method checkNum untuk mendeteksi apa ada no.handphone selain angka
                         id = generateId(nama, nomorHP); 
                         break; 
