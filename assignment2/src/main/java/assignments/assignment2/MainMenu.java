@@ -52,8 +52,9 @@ public class MainMenu {
             if (!NotaGenerator.checkNum(nomorHP)){    
                 System.out.println("Field nomor hp hanya menerima digit");                          
                 nomorHP = input.nextLine();
+            } else {
+                break;
             }
-            break;
         }
         Member newMember = new Member(nama, nomorHP);
         if(memberList.isEmpty()){
@@ -178,8 +179,9 @@ public class MainMenu {
             if (!NotaGenerator.checkNum(inputId)){    
                 System.out.println("ID nota berbentuk angka!");                          
                 inputId = input.nextLine();
+            } else {
+                break;
             }
-            break;
         }
         for (Nota element: notaList){
             if (element.getIdNota()==Integer.valueOf(inputId)&&element.getStatus()==true){
