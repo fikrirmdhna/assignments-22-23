@@ -232,14 +232,14 @@ public class NotaGenerator {
     /**
      * Method untuk menghitung totak harga dari setiap jenis paket.
      */
-    public static int myHitung(String paket, int berat){
-        int totalHarga = 0;
+    public static long myHitung(String paket, int berat){
+        long totalHarga = 0;
         if (paket.equals("express")){
-            totalHarga = berat * 12000;
+            totalHarga = (long)berat * 12000;
         } else if (paket.equals("fast")){
-            totalHarga = berat * 10000;
+            totalHarga = (long)berat * 10000;
         } else if (paket.equals("reguler")){
-            totalHarga = berat * 7000;
+            totalHarga = (long)berat * 7000;
         }
         return totalHarga;
     }
