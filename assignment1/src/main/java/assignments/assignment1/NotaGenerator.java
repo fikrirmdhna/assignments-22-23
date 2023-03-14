@@ -172,7 +172,7 @@ public class NotaGenerator {
 
         if (checkSum < 10){
             return namaDepan + "-" + nomorHP+ "-" + "0" + checkSumFormatted; //jika checkSum < 10 maka akan mendapat angka 0 di sebelum angka checksum
-        } else if (checkSum >= 10 && checkSum < 99){
+        } else if (checkSum >= 10 && checkSum <= 99){
             return namaDepan + "-" + nomorHP + "-" + checkSumFormatted;
         } else {                                                             //kondisi dimana checkSum >= 100 sesuai ketentuan checkSum hanya ada 2 digit maka yang diambil 2 digit terakhir saja
             return namaDepan + "-" + nomorHP + "-" + checkSumFormatted.substring(checkSumFormatted.length()-2, checkSumFormatted.length());
