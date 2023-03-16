@@ -12,7 +12,7 @@ public class Nota {
     private Member member;
     private String paket;
     private int berat;
-    private String tanggalMasuk;
+    private String tanggalMasuk;            //attributes yang diperlukan dalam class Nota
     private int idNota;
     private int sisaHariPengerjaan;
     private boolean isReady; 
@@ -22,13 +22,14 @@ public class Nota {
         this.member = member;
         this.paket = paket;
         this.berat = berat;
-        this.tanggalMasuk = tanggalMasuk;
-        this.idNota = idNota;
+        this.tanggalMasuk = tanggalMasuk;                   //membuat constructors class Nota
+        this.idNota = idNota;                               
         this.sisaHariPengerjaan = sisaHariPengerjaan;
         this.isReady = isReady;
     }
 
     // TODO: tambahkan methods yang diperlukan untuk class ini
+    // Setter Getter yang diperlukan dari class Nota
     public Member getMember(){
         return member;
     }
@@ -69,35 +70,36 @@ public class Nota {
         this.isReady = ready;
     }
 
+    //Method generateNota dari TP01 yang diubah parameternya dan ditambah dengan ketentuan bonusCounter
     public static String generateNota(String id, String paket, int berat, String tanggalTerima, int bonusCounter){
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("dd/MM/yyyy");        //menggunakan java.util dan java.time untuk mengformat tanggal
         LocalDate tanggalSelesai = null;                                                            //membuat localdate kosong agar dapat diisi dengan kondisi if else
         String harga = "";
         String status = "";
         if (bonusCounter % 3 == 0 && bonusCounter!=0){
-            if (paket.equals("express")){
+            if (paket.toLowerCase().equals("express")){
                 harga = berat + " kg x 12000 = " + NotaGenerator.myHitung(paket, berat) + " = " + (NotaGenerator.myHitung(paket, berat)/2) + " (Discount member 50%!!!)";
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(1);  //paket express dengan diskon dari bonusCounter
-            } else if (paket.equals("fast")){
+            } else if (paket.toLowerCase().equals("fast")){
                 harga = berat + " kg x 10000 = " + NotaGenerator.myHitung(paket, berat) + " = " + (NotaGenerator.myHitung(paket, berat)/2) + " (Discount member 50%!!!)";
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(2);  //paket fast dengan diskon dari bonusCounter
-            }else if (paket.equals("reguler")){
+            }else if (paket.toLowerCase().equals("reguler")){
                 harga = berat + " kg x 7000 = " + NotaGenerator.myHitung(paket, berat) + " = " + (NotaGenerator.myHitung(paket, berat)/2) + " (Discount member 50%!!!)";
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(3);  //paket reguler dengan diskon dari bonusCounter
             }
         } else {
-            if (paket.equals("express")){
+            if (paket.toLowerCase().equals("express")){
                 harga = berat + " kg x 12000 = " + NotaGenerator.myHitung(paket, berat);
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(1);  //paket express tanggal ditambah 1 hari dengan menggunakan plusDay
-            } else if (paket.equals("fast")){
+            } else if (paket.toLowerCase().equals("fast")){
                 harga = berat + " kg x 10000 = " + NotaGenerator.myHitung(paket, berat);
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(2);  //paket fast tanggal ditambah 2 hari dengan menggunakan plusDay
-            }else if (paket.equals("reguler")){
+            }else if (paket.toLowerCase().equals("reguler")){
                 harga = berat + " kg x 7000 = " + NotaGenerator.myHitung(paket, berat);
                 tanggalSelesai = LocalDate.parse(tanggalTerima, formatTanggal).plusDays(3);  //paket reguler tanggal ditambah 3 hari dengan menggunakan plusDay
             }
         }
-        if (MainMenu.checkTanggal(MainMenu.getTime(), tanggalSelesai, formatTanggal)==false){
+        if (MainMenu.checkTanggal(MainMenu.getTime(), tanggalSelesai, formatTanggal)==false){          //mengecek status tanggal
             status = "Status      	: Belum bisa diambil :(";
         } else {
             status = "Status      	: Sudah dapat diambil!";

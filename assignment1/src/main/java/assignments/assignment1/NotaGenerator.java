@@ -230,11 +230,11 @@ public class NotaGenerator {
      */
     public static long myHitung(String paket, int berat){
         long totalHarga = 0;
-        if (paket.equals("express")){
+        if (paket.toLowerCase().equals("express")){
             totalHarga = (long)berat * 12000;
-        } else if (paket.equals("fast")){
+        } else if (paket.toLowerCase().equals("fast")){
             totalHarga = (long)berat * 10000;
-        } else if (paket.equals("reguler")){
+        } else if (paket.toLowerCase().equals("reguler")){
             totalHarga = (long)berat * 7000;
         }
         return totalHarga;

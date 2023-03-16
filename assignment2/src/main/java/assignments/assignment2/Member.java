@@ -8,7 +8,7 @@ import assignments.assignment1.NotaGenerator;
 public class Member {
     // TODO: tambahkan attributes yang diperlukan untuk class ini
     private String nama;
-    private String noHp;
+    private String noHp;           //attributes yang digunakan di class Member
     private String Id;
     private int bonusCounter;
 
@@ -16,7 +16,7 @@ public class Member {
         // TODO: buat constructor untuk class ini
         this.nama = nama;
         this.noHp = noHp;
-        this.Id = NotaGenerator.generateId(nama,noHp);
+        this.Id = NotaGenerator.generateId(nama,noHp);      //membuat constructor dari class Member
         this.bonusCounter = 0;
     }
 
@@ -29,7 +29,7 @@ public class Member {
         return nama;
     }
     
-    public String getNoHp(){
+    public String getNoHp(){                //setter getter yang diperlukan dari class Member
         return noHp;
     }
 
