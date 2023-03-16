@@ -207,14 +207,14 @@ public class MainMenu {
             for (Nota element: notaList){
                 if (element.getIdNota()==numIdNota&&element.getStatus()==true){      //mencari dan me-remove element dalam memberList yang status elementnya sudah bisa diambil (isReady = true)
                     notaList.remove(element);
-                    System.out.println("Nota dengan ID " + numIdNota + " berhasil diambil!");
+                    System.out.println("Nota dengan ID " + inputIdNota + " berhasil diambil!");
                     break;
                 } else if (element.getIdNota()==numIdNota&&element.getStatus()==false){     //jika idNota ketemu dan status isReady = false maka akan gagal mengambil  
-                    System.out.println("Nota dengan ID " + numIdNota + " gagal diambil!");
+                    System.out.println("Nota dengan ID " + inputIdNota + " gagal diambil!");
                 }
             }
         } else {
-            System.out.println("Nota dengan ID " + numIdNota + " tidak ditemukan!");                 //else untuk idNota yang tidak ditemukan
+            System.out.println("Nota dengan ID " + inputIdNota + " tidak ditemukan!");                 //else untuk idNota yang tidak ditemukan
         }
         
     }
