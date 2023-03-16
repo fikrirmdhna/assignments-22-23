@@ -128,7 +128,7 @@ public class MainMenu {
                 } else {
                     if (NotaGenerator.checkNum(berat1)){                               
                         berat = Integer.valueOf(berat1);                    //mengubah String menjadi integer    
-                        if (berat < 0){
+                        if (berat <= 0){
                             System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
                             continue;
                         } else if (berat > 0 && berat < 2){                     
