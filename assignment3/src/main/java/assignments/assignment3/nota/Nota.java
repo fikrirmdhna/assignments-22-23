@@ -17,6 +17,7 @@ public class Nota {
     private int id;
     private String tanggalMasuk;
     private boolean isDone;
+    private int lateDayDone = 0;
     static public int totalNota;
 
     public Nota(Member member, int berat, String paket, String tanggal) {
@@ -27,10 +28,13 @@ public class Nota {
         this.tanggalMasuk = tanggal;
         this.isDone = false;
         this.id = totalNota++;
-        this.baseHarga = calculateHarga();
-        this.sisaHariPengerjaan = getSisaHariPengerjaan();
+        this.baseHarga = NotaGenerator.myHitung(this.paket, this.berat);
         this.services = new LaundryService[0];
         this.services1 = new ArrayList<LaundryService>();
+
+        if(this.paket.toLowerCase().equals("express")) this.sisaHariPengerjaan = 1;
+        else if(this.paket.toLowerCase().equals("fast")) this.sisaHariPengerjaan = 2;
+        else if (this.paket.toLowerCase().equals("reguler")) this.sisaHariPengerjaan = 3;
     }
     
     public void addService(LaundryService service){
@@ -62,12 +66,15 @@ public class Nota {
     }
     public void toNextDay() {
         // TODO
-        this.sisaHariPengerjaan--;
+        if(this.isDone!=true) {
+            this.sisaHariPengerjaan--;
+            lateDayDone = sisaHariPengerjaan < 0 ? lateDayDone + 1 : 0;
+        }
     }
 
     public long calculateHarga(){
         // TODO
-        return NotaGenerator.myHitung(this.paket, this.berat);
+        return baseHarga;
     }
 
     public String getNotaStatus(){
@@ -85,16 +92,17 @@ public class Nota {
         LocalDate tanggalSelesai = null;                                                            //membuat localdate kosong agar dapat diisi dengan kondisi if else
         String harga = "";
         String services = "";
+        String kompensasi = "";
         long hargaAkhir = baseHarga;
 
         if (paket.toLowerCase().equals("express")){
-            harga = berat + " kg x 12000 = " + this.baseHarga;
+            harga = berat + " kg x 12000 = " + calculateHarga();
             tanggalSelesai = LocalDate.parse(this.tanggalMasuk, formatTanggal).plusDays(1);  //paket express tanggal ditambah 1 hari dengan menggunakan plusDay
         } else if (paket.toLowerCase().equals("fast")){
-            harga = berat + " kg x 10000 = " + this.baseHarga;
+            harga = berat + " kg x 10000 = " + calculateHarga();
             tanggalSelesai = LocalDate.parse(this.tanggalMasuk, formatTanggal).plusDays(2);  //paket fast tanggal ditambah 2 hari dengan menggunakan plusDay
         }else if (paket.toLowerCase().equals("reguler")){
-            harga = berat + " kg x 7000 = " + this.baseHarga;
+            harga = berat + " kg x 7000 = " + calculateHarga();
             tanggalSelesai = LocalDate.parse(this.tanggalMasuk, formatTanggal).plusDays(3);  //paket reguler tanggal ditambah 3 hari dengan menggunakan plusDay
         }
 
@@ -110,7 +118,10 @@ public class Nota {
             services += "\n";
         }
 
-        // if(getSisaHariPengerjaan()<0 && this.isDone!=true) hargaAkhir -= Math.abs(getSisaHariPengerjaan())*2000;
+        if(lateDayDone>0) {
+            hargaAkhir -= lateDayDone*2000;
+            kompensasi += " Ada kompensasi keterlambatan " + lateDayDone + " * 2000 hari";
+        }
 
         return "[ID Nota = " + id + "]" +
         "\n" + "ID    : " + member.getId()+ 
@@ -120,7 +131,7 @@ public class Nota {
         "\n" + "Tanggal Selesai : " + tanggalSelesai.format(formatTanggal)+
         "\n" + "--- SERVICE LIST ---" +
         "\n" + services +
-        "Harga Akhir: " + hargaAkhir + "\n";
+        "Harga Akhir: " + hargaAkhir + kompensasi +"\n";
     }
 
     // Dibawah ini adalah getter
@@ -129,6 +140,9 @@ public class Nota {
             if(element.isDone()==false) this.isDone = false;
             else this.isDone = true;
         }
+    }
+    public void setSisaHari(int x){
+        this.sisaHariPengerjaan = x;
     }
     public String getPaket() {
         return paket;
@@ -140,12 +154,9 @@ public class Nota {
         return id;
     }
     public String getTanggal() {
-        return tanggalMasuk;
+        return this.tanggalMasuk;
     }
     public int getSisaHariPengerjaan(){
-        if(this.paket.equals("express")) sisaHariPengerjaan = 1;
-        else if(this.paket.equals("fast")) sisaHariPengerjaan = 2;
-        else if (this.paket.equals("reguler")) sisaHariPengerjaan = 3;
         return sisaHariPengerjaan;
     }
     public boolean isDone() {

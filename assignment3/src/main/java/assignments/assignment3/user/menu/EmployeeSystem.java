@@ -56,6 +56,9 @@ public class EmployeeSystem extends SystemCLI {
             System.out.println("Nota " + element.getId() + " : " + element.kerjakan());
             element.setStatusNota();
         }
+        for(Nota element1: notaList1){
+            if(element1.getSisaHariPengerjaan()<0 && element1.isDone()==true) element1.setSisaHari(element1.getSisaHariPengerjaan());
+        }
     }
 
     public void showNota(){

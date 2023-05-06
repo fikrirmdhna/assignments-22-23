@@ -50,6 +50,7 @@ public class MemberSystem extends SystemCLI {
 
     public void addLoundry(){
         System.out.println("Masukkan paket laundry: ");
+        NotaGenerator.showPaket();
         String paket = "";                                         
 
         while (true){
