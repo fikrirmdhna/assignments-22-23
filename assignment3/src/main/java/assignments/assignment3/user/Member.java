@@ -3,6 +3,11 @@ package assignments.assignment3.user;
 import java.util.ArrayList;
 
 import assignments.assignment3.nota.Nota;
+
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
+
 public class Member {
     protected String id;
     protected String password;
@@ -34,7 +39,7 @@ public class Member {
      */
     public void addNota(Nota nota) {
         // TODO
-        notaList1.add(nota);
+        notaList1.add(nota);           //menambahkan nota ke dalam ArrayList notaList1 untuk member
     }
 
     /**
@@ -45,7 +50,7 @@ public class Member {
      */
     protected boolean authenticate(String password) {
         // TODO
-        if(this.password.equals(password)) return true;
+        if(this.password.equals(password)) return true;       //mengecek this.password dengan input dari String password harus sesuai agar true
         return false;
     }
 
@@ -61,7 +66,7 @@ public class Member {
 
     public Nota[] getNotaList() {
         notaList = new Nota[notaList1.size()];
-        notaList1.toArray(notaList);
+        notaList1.toArray(notaList);                 //meng-convert ArrayList menjadi array primitive agar return array biasa tidak berubah dari template
         return notaList;
     }
 }

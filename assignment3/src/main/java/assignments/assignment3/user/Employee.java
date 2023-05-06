@@ -1,5 +1,7 @@
 package assignments.assignment3.user;
-
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
 public class Employee extends Member {
     public static int employeeCount;
     public Employee(String nama, String password) {
@@ -16,7 +18,7 @@ public class Employee extends Member {
     private static String generateId(String nama) {
         // TODO
         String[] namaSplitted = nama.split(" ");
-        String namaDepan = namaSplitted[0].toUpperCase();
+        String namaDepan = namaSplitted[0].toUpperCase();   //memisahkan nama depan dan belakang employee dan mereturn ID employee dengan nomer berurutan
         return namaDepan + "-" + employeeCount++;
     }
 }

@@ -5,7 +5,9 @@ import assignments.assignment3.user.Member;
 import assignments.assignment3.user.menu.EmployeeSystem;
 import assignments.assignment3.user.menu.MemberSystem;
 import assignments.assignment3.user.menu.SystemCLI;
-
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
 public class LoginManager {
     private final EmployeeSystem employeeSystem;
     private final MemberSystem memberSystem;
@@ -42,7 +44,7 @@ public class LoginManager {
     public Member register(String nama, String noHp, String password) {
         // TODO
         Member member = new Member(nama, NotaGenerator.generateId(nama, noHp), password);
-        if(memberSystem.isMemberExist(member.getId())==false){ 
+        if(memberSystem.isMemberExist(member.getId())==false){                              //mendaftarkan member jika member tidak ada di memberList
             memberSystem.addMember(member);
             return member;
         }

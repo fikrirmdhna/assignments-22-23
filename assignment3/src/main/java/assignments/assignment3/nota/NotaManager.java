@@ -4,10 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
+
 public class NotaManager {
     public static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
     public static Calendar cal = Calendar.getInstance();
-    // static public Nota[] notaList = new Nota[0];
     public static ArrayList<Nota> notaList1 = new ArrayList<Nota>();
     public static Nota[] notaList;
 
@@ -17,7 +20,7 @@ public class NotaManager {
     public static void toNextDay(){
         //TODO: implement skip hari
         cal.add(Calendar.DATE, 1);
-        for(Nota element: notaList1){
+        for(Nota element: notaList1){                    //mengurangi sisaHariPengerjaan setiap nota
             element.toNextDay();
         }
     }
@@ -29,11 +32,11 @@ public class NotaManager {
      */
     public static void addNota(Nota nota){
         //TODO: implement add nota
-        notaList1.add(nota);
+        notaList1.add(nota);                            //menambahkan nota ke ArrayList notaList1 untuk NotaManager
     }
 
     public static Nota[] getNotaList(){
-        notaList = new Nota[notaList1.size()];
+        notaList = new Nota[notaList1.size()];         //meng-convert ArrayList notaList1 menjadi array primitive notaList agar return tidak berubah dari template
         notaList1.toArray(notaList);
         return notaList;
     }

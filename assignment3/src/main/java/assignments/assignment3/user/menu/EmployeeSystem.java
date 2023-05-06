@@ -2,9 +2,11 @@ package assignments.assignment3.user.menu;
 
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.user.Employee;
-// import assignments.assignment3.user.Member;
 
 import static assignments.assignment3.nota.NotaManager.notaList1;
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
 
 public class EmployeeSystem extends SystemCLI {
 
@@ -12,14 +14,8 @@ public class EmployeeSystem extends SystemCLI {
      * Membuat object baru EmployeeSystem dan mendaftarkan Employee pada CuciCuci
      */
     public EmployeeSystem() {
-        // memberList = new Member[]{
-        //         new Employee("Dek Depe", "akuDDP"),
-        //         new Employee("Depram", "musiktualembut"),
-        //         new Employee("Lita Duo", "gitCommitPush"),
-        //         new Employee("Ivan Hoshimachi", "SuamiSahSuisei"),
-        // };
         memberList.add(new Employee("Dek Depe", "akuDDP"));
-        memberList.add(new Employee("Depram", "musiktualembut"));
+        memberList.add(new Employee("Depram", "musiktualembut"));               //mengubah template menjadi add untuk ArrayList
         memberList.add(new Employee("Lita Duo", "gitCommitPush"));
         memberList.add(new Employee("Ivan Hoshimachi", "SuamiSahSuisei"));
     }
@@ -35,7 +31,7 @@ public class EmployeeSystem extends SystemCLI {
         boolean logout = false;
         // TODO:
         if(choice==1) doNyuci(); 
-        else if (choice==2) showNota();
+        else if (choice==2) showNota();                 //memproses pilihan employee
         else if (choice==3) return logout = true;
         return logout;
     }
@@ -52,18 +48,23 @@ public class EmployeeSystem extends SystemCLI {
     
     public void doNyuci(){
         System.out.println("Stand back! " + loginMember.getNama() + " beginning to nyuci!");
-        for(Nota element: notaList1){
-            System.out.println("Nota " + element.getId() + " : " + element.kerjakan());
-            element.setStatusNota();
-        }
-        for(Nota element1: notaList1){
-            if(element1.getSisaHariPengerjaan()<0 && element1.isDone()==true) element1.setSisaHari(element1.getSisaHariPengerjaan());
+        if(notaList1.size()>0){
+            for(Nota element: notaList1){                                                       
+                System.out.println("Nota " + element.getId() + " : " + element.kerjakan());         //employee mengerjakan semua service yang dipilih oleh masing masing member
+                element.setStatusNota();                                                            //dan langsung menge-set status isDone
+            }
+        } else {
+            System.out.println("Terdaftar " + notaList1.size() + " nota yang perlu dikerjakan.");
         }
     }
 
     public void showNota(){
-        for(Nota element: notaList1){
-            System.out.println("Nota " + element.getId() + " : " + element.getNotaStatus());
+        if(notaList1.size()>0){
+            for(Nota element: notaList1){
+                System.out.println("Nota " + element.getId() + " : " + element.getNotaStatus());     //mengeprint seluruh nota status milik semua member jika ada
+            }
+        } else {
+            System.out.println("Terdaftar " + notaList1.size() + " nota dalam sistem.");
         }
     }
 }

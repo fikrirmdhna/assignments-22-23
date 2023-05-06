@@ -5,8 +5,11 @@ import assignments.assignment3.user.Member;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
+
 public abstract class SystemCLI {
-    // protected Member[] memberList = new Member[0];
     protected ArrayList<Member> memberList = new ArrayList<Member>();
     protected Member loginMember;
     protected Scanner in;

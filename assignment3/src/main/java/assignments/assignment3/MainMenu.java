@@ -11,6 +11,10 @@ import java.util.Scanner;
 import static assignments.assignment3.nota.NotaManager.cal;
 import static assignments.assignment3.nota.NotaManager.fmt;
 
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
+
 public class MainMenu {
     private final Scanner in;
     private final LoginManager loginManager;

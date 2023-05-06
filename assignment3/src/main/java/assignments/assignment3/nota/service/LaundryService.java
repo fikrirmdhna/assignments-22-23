@@ -1,5 +1,7 @@
 package assignments.assignment3.nota.service;
-
+// Fikri Dhiya Ramadhana
+// 2206819533
+// TP03
 public interface LaundryService {
     /**
      * Akan mengembalikan String yang menandakan bahwa Nota tersebut sedang dikerjakan.
