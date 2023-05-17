@@ -33,7 +33,7 @@ public class RegisterGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
         initGUI();
 
@@ -47,16 +47,16 @@ public class RegisterGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
-        nameLabel = new JLabel("Nama: ");
+        nameLabel = new JLabel("  Nama: ");
         nameTextField = new JTextField();
-        phoneLabel = new JLabel("No. HP: ");
+        phoneLabel = new JLabel("  No. HP: ");
         phoneTextField = new JTextField();
-        passwordLabel = new JLabel("Password: ");
+        passwordLabel = new JLabel("  Password: ");
         passwordField = new JPasswordField();
         registerButton = new JButton("Register");
         backButton = new JButton("Back");
 
-        mainPanel.setLayout(new GridLayout(4,2));
+        mainPanel.setLayout(new GridLayout(4,2,5,5));
         mainPanel.add(nameLabel);
         mainPanel.add(nameTextField);
         mainPanel.add(phoneLabel);

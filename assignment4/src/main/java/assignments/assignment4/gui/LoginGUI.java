@@ -29,7 +29,7 @@ public class LoginGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
         initGUI();
 
@@ -43,14 +43,14 @@ public class LoginGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
-        idLabel = new JLabel("Masukkan ID Anda: ");
+        idLabel = new JLabel("  Masukkan ID Anda: ");
         idTextField = new JTextField();
-        passwordLabel = new JLabel("Masukkan password Anda: ");
+        passwordLabel = new JLabel("  Masukkan password Anda: ");
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
 
-        mainPanel.setLayout(new GridLayout(3,2));
+        mainPanel.setLayout(new GridLayout(3,2,5,5));
         mainPanel.add(idLabel);
         mainPanel.add(idTextField);
         mainPanel.add(passwordLabel);
@@ -87,7 +87,7 @@ public class LoginGUI extends JPanel {
      * */
     private void handleLogin() {
         if(idTextField.getText().isEmpty() || passwordField.getPassword().length==0){
-            JOptionPane.showMessageDialog(this, "Semua field harus diisi", "Login Gagal!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Semua field di atas wajib diisi!", "Login Gagal!", JOptionPane.ERROR_MESSAGE);
         } else {
             if (loginManager.getSystem(idTextField.getText())!= null){
                 if (loginManager.getSystem(idTextField.getText()).authUser(idTextField.getText(), new String(passwordField.getPassword())) != null) {

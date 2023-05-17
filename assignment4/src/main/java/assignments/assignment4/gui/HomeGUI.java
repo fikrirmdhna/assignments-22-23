@@ -28,7 +28,7 @@ public class HomeGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
         initGUI();
 
@@ -41,22 +41,35 @@ public class HomeGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
-        mainPanel.setLayout(new GridLayout(5,1));
+        mainPanel.setLayout(new GridLayout(5,1,10,10));
         
         titleLabel = new JLabel("Selamat datang di CuciCuci System!", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
+
         loginButton = new JButton("Login");
+        loginButton.setPreferredSize(new Dimension(150,50));
+
         registerButton = new JButton("Register");
+        registerButton.setPreferredSize(new Dimension(150,50));
+
         toNextDayButton = new JButton("Next Day");
+        toNextDayButton.setPreferredSize(new Dimension(150,50));
 
         dateLabel = new JLabel("Hari ini: " + NotaManager.fmt.format(NotaManager.cal.getTime()), SwingConstants.CENTER);
         dateLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
+        panel1.add(loginButton);
+        panel2.add(registerButton);
+        panel3.add(toNextDayButton);
+        
         mainPanel.add(titleLabel);
-        mainPanel.add(loginButton);
-        mainPanel.add(registerButton);
-        mainPanel.add(toNextDayButton);
+        mainPanel.add(panel1);
+        mainPanel.add(panel2);
+        mainPanel.add(panel3);
         mainPanel.add(dateLabel);
 
         loginButton.addActionListener(new ActionListener() {

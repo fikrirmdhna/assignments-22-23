@@ -65,13 +65,26 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     private void showDetailNota() {
         // TODO
+        TextArea textArea = new TextArea();
+        textArea.setPreferredSize(new Dimension(450,300));
+        textArea.setEditable(false);
+        
         if(getLoggedInMember().getNotaList().length!=0){
             String text = "";
+            int i = 0;
             for(Nota element: getLoggedInMember().getNotaList()){
-                text += element.toString() + "\n";
+                text += element.toString();
+                if(i < getLoggedInMember().getNotaList().length-1){
+                    text += "\n";
+                    i++;
+                }
             }
-            JOptionPane.showMessageDialog(this, new TextArea(text) ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
-        } else JOptionPane.showMessageDialog(this, new TextArea("Kamu belum pernah Laundry di CuciCuci, hiks ;(") ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
+            textArea.setText(text);
+            JOptionPane.showMessageDialog(this, textArea ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            textArea.setText("Kamu belum pernah Laundry di CuciCuci, hiks ;(");
+            JOptionPane.showMessageDialog(this, textArea ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**

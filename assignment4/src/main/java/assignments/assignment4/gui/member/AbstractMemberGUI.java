@@ -22,7 +22,7 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
     public AbstractMemberGUI(SystemCLI systemCLI) {
         super(new BorderLayout());
         this.systemCLI = systemCLI;
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
         // Set up welcome label
         welcomeLabel = new JLabel("", SwingConstants.CENTER);

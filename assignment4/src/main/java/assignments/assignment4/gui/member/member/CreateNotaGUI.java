@@ -50,28 +50,43 @@ public class CreateNotaGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
-        paketLabel = new JLabel("Paket Laundry: ");
-        paketLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
+        JPanel panel4 = new JPanel();
+
+        panel1.setLayout(new GridLayout(1,2));
+        panel2.setLayout(new GridLayout(1,2));
+        panel3.setLayout(new GridLayout(1,2));
+        panel4.setLayout(new GridLayout(1,2));
+
+        paketLabel = new JLabel("  Paket Laundry:");
         paketComboBox = new JComboBox<String>(new String[]{"Express","Fast","Reguler"});
         showPaketButton = new JButton("Show Paket");
-
-        beratLabel = new JLabel("Berat Cucian (Kg): ");
-        beratLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-
+        beratLabel = new JLabel("  Berat Cucian (Kg):");
         beratTextField = new JTextField();
         setrikaCheckBox = new JCheckBox("Tambah Setrika Service (1000 / kg)");
         antarCheckBox = new JCheckBox("Tambah Antar Service (2000 / 4kg pertama, kemudian 500 / kg)");
         createNotaButton = new JButton("Buat Nota");
         backButton = new JButton("Back");
 
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        setLayout(new GridLayout(9,2,5,5));
-        add(paketLabel);
-        add(paketComboBox);
-        add(showPaketButton);
-        add(beratLabel);
-        add(beratTextField);
+        panel3.add(paketComboBox);
+        panel3.add(showPaketButton);
+
+        panel4.add(beratTextField);
+        panel4.add(new JLabel());
+
+        panel1.add(paketLabel);
+        panel1.add(panel3);
+
+        panel2.add(beratLabel);
+        panel2.add(panel4);
+
+        setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        setLayout(new GridLayout(6,1,5,5));
+
+        add(panel1);
+        add(panel2);
         add(setrikaCheckBox);
         add(antarCheckBox);
         add(createNotaButton);
@@ -144,7 +159,7 @@ public class CreateNotaGUI extends JPanel {
             beratTextField.setText("");
             setrikaCheckBox.setSelected(false);
             antarCheckBox.setSelected(false);
-        } else JOptionPane.showMessageDialog(this, "Harap masukkan berat cucian Anda dalam bentuk bilangan positif.", "Input berat tidak valid!", JOptionPane.ERROR_MESSAGE);
+        } else JOptionPane.showMessageDialog(this, "Harap masukkan berat cucian Anda dalam bentuk bilangan positif.", "Nota Gagal Dibuat!", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
