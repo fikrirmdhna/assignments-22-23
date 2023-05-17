@@ -82,7 +82,7 @@ public class CreateNotaGUI extends JPanel {
         panel2.add(beratLabel);
         panel2.add(panel4);
 
-        setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        setBorder(BorderFactory.createEmptyBorder(80,50,80,50));
         setLayout(new GridLayout(6,1,5,5));
 
         add(panel1);
