@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 // TP04
 
 public class EmployeeSystemGUI extends AbstractMemberGUI {
-    public static final String KEY = "EMPLOYEE";
+    public static final String KEY = "EMPLOYEE";            //subclass dari AbstractMemberGUI, jika panel.getPageName() mereturn key employee maka panel untuk employee yang akan dimunculkan
 
     public EmployeeSystemGUI(SystemCLI systemCLI) {
         super(systemCLI);
@@ -36,7 +36,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     protected JButton[] createButtons() {
         // TODO
         return new JButton[]{
-            new JButton("It's nyuci time"),
+            new JButton("It's nyuci time"),             //membuat button sesuai dengan index action listener agar sesuai dengan event yang diinginkan
             new JButton("Display List Nota")
         };
     }
@@ -50,7 +50,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     @Override
     protected ActionListener[] createActionListeners() {
         return new ActionListener[]{
-                e -> cuci(),
+                e -> cuci(),                                 //urutan actionlistener untuk setiap button (Template)
                 e -> displayNota(),
         };
     }
@@ -63,7 +63,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
         // TODO
         if(NotaManager.getNotaList().length!=0){
             String text = "";
-            for(Nota element: NotaManager.getNotaList()){
+            for(Nota element: NotaManager.getNotaList()){                                   //menampilkan status setiap nota jika ada
                 text += "Nota " + element.getId() + " : " + element.getNotaStatus() +"\n";
             }
             JOptionPane.showMessageDialog(this, text ,"List Nota", JOptionPane.INFORMATION_MESSAGE);
@@ -79,7 +79,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
         if(NotaManager.notaList1.size()>0){
             String text = "";
             for(Nota element: NotaManager.notaList1){                                                       
-                text += "Nota " + element.getId() + " : " + element.kerjakan()+"\n";        
+                text += "Nota " + element.getId() + " : " + element.kerjakan()+"\n";       //employee mengerjakan semua nota laundry dari semua member yang ada di NotaManager jika ada 
                 element.setStatusNota();                                                            
             }
             JOptionPane.showMessageDialog(this, "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!" ,"Nyuci Time", JOptionPane.INFORMATION_MESSAGE);

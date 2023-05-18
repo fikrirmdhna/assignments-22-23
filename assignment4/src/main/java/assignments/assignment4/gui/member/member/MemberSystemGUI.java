@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 // TP04
 
 public class MemberSystemGUI extends AbstractMemberGUI {
-    public static final String KEY = "MEMBER";
+    public static final String KEY = "MEMBER";              //subclass dari AbstractMemberGUI, jika panel.getPageName() mereturn key member maka panel untuk member yang akan dimunculkan
 
     public MemberSystemGUI(SystemCLI systemCLI) {
         super(systemCLI);
@@ -40,7 +40,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
     protected JButton[] createButtons() {
         // TODO
         return new JButton[]{
-            new JButton("Saya ingin laundry"),
+            new JButton("Saya ingin laundry"),                  //membuat button sesuai dengan index action listener agar sesuai dengan event yang diinginkan
             new JButton("Lihat detail nota saya")
         };
     }
@@ -54,7 +54,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
     @Override
     protected ActionListener[] createActionListeners() {
         return new ActionListener[]{
-                e -> createNota(),
+                e -> createNota(),                                  //urutan actionlistener untuk setiap button (Template)
                 e -> showDetailNota(),
         };
     }
@@ -66,13 +66,13 @@ public class MemberSystemGUI extends AbstractMemberGUI {
     private void showDetailNota() {
         // TODO
         TextArea textArea = new TextArea();
-        textArea.setPreferredSize(new Dimension(450,300));
+        textArea.setPreferredSize(new Dimension(450,300));      //menggunakan textArea untuk menyimpan detail Nota member yang login
         textArea.setEditable(false);
-        
+
         if(getLoggedInMember().getNotaList().length!=0){
             String text = "";
             int i = 0;
-            for(Nota element: getLoggedInMember().getNotaList()){
+            for(Nota element: getLoggedInMember().getNotaList()){             //mengecek apakah member memiliki nota dan mengeprint nota jika punya
                 text += element.toString();
                 if(i < getLoggedInMember().getNotaList().length-1){
                     text += "\n";
@@ -82,8 +82,8 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             textArea.setText(text);
             JOptionPane.showMessageDialog(this, textArea ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            textArea.setText("Kamu belum pernah Laundry di CuciCuci, hiks ;(");
-            JOptionPane.showMessageDialog(this, textArea ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);
+            textArea.setText("Kamu belum pernah Laundry di CuciCuci, hiks ;(");     //pesan ini akan ditunjukkan jika member belum mempunyai nota
+            JOptionPane.showMessageDialog(this, textArea ,"Detail Nota", JOptionPane.INFORMATION_MESSAGE);  
         }
     }
 

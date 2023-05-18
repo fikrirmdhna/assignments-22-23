@@ -4,7 +4,7 @@ package assignments.assignment4.gui.member;
 // TP04
 public interface Loginable {
     boolean login(String id, String password);
-    void logout();
+    void logout();                                  //implementasi method dari interface Loginable
     String getPageName();
 
 }

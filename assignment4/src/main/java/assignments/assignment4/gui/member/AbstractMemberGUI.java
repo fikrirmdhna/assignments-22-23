@@ -26,7 +26,7 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
 
         // Set up welcome label
         welcomeLabel = new JLabel("", SwingConstants.CENTER);
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));                     //abstract class AbstractMemberGUI untuk membuat panel member dan employee (Template)
         add(welcomeLabel, BorderLayout.NORTH);
 
         // Set up footer
@@ -47,11 +47,11 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
      * */
     protected JPanel initializeButtons() {
         JButton[] buttons = createButtons();
-        ActionListener[] listeners = createActionListeners();
-
-        // if (buttons.length != listeners.length) {
-        //     throw new IllegalStateException("Number of buttons and listeners must be equal.");
-        // }
+        ActionListener[] listeners = createActionListeners();       
+                                                                                                    //membuat list button dan list action listener dan jumlahnya harus sesuai(Template)
+        if (buttons.length != listeners.length) {
+            throw new IllegalStateException("Number of buttons and listeners must be equal.");
+        }
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -65,7 +65,7 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
 
         for (int i = 0; i < buttons.length; i++) {
             JButton button = buttons[i];
-            button.addActionListener(listeners[i]);
+            button.addActionListener(listeners[i]);                                     //mengeset button ke dalam buttonsPanel (Template)
             buttonsPanel.add(button, gbc);
         }
 
@@ -97,8 +97,8 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         // TODO
         loggedInMember = systemCLI.authUser(id, password);
         if(loggedInMember!=null) {
-            welcomeLabel.setText("Welcome! "+ loggedInMember.getNama());
-            loggedInAsLabel.setText("Logged as: " + loggedInMember.getId());
+            welcomeLabel.setText("Welcome! "+ loggedInMember.getNama());                //saat login berhasil, mengubah welcomeLabel dan loggedInAsLabel sesuai dengan user yang login
+            loggedInAsLabel.setText("Logged in as: " + loggedInMember.getId());
             return true;
         }
         return false;

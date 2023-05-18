@@ -46,7 +46,7 @@ public class MainFrame extends JFrame{
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 432);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);    //membuat mainFrame berada di tengah - tengah layar
         setVisible(true);
         loginablePanel = new Loginable[]{
                 employeeSystemGUI,
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame{
      * */
     public void navigateTo(String page){
         // TODO
-        cards.show(mainPanel, page);
+        cards.show(mainPanel, page);    //method untuk mencari key halaman yang diinginkan 
     }
 
     /**
@@ -109,7 +109,7 @@ public class MainFrame extends JFrame{
                 loginablePanel) {
             // TODO
             if(panel.login(id, password)) {
-                navigateTo(panel.getPageName());
+                navigateTo(panel.getPageName());     //menampilkan halaman saat login apakah member atau employee
                 panel.getPageName();
                 return true;
             }

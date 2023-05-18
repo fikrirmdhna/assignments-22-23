@@ -29,7 +29,7 @@ public class LoginGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50)); //membuat batas border
 
         initGUI();
 
@@ -45,7 +45,7 @@ public class LoginGUI extends JPanel {
         // TODO
         idLabel = new JLabel("  Masukkan ID Anda: ");
         idTextField = new JTextField();
-        passwordLabel = new JLabel("  Masukkan password Anda: ");
+        passwordLabel = new JLabel("  Masukkan password Anda: ");           //membuat properti yang dibutuhkan LoginGUI
         passwordField = new JPasswordField();
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
@@ -53,7 +53,7 @@ public class LoginGUI extends JPanel {
         mainPanel.setLayout(new GridLayout(3,2,5,5));
         mainPanel.add(idLabel);
         mainPanel.add(idTextField);
-        mainPanel.add(passwordLabel);
+        mainPanel.add(passwordLabel);                                            //mengeset letak properti dalam gridlayout 3 x 2 
         mainPanel.add(passwordField);
         mainPanel.add(loginButton);
         mainPanel.add(backButton);
@@ -63,7 +63,7 @@ public class LoginGUI extends JPanel {
                 handleBack();
             }
         });
-
+                                                                                //mengatur event action listener untuk setiap button
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 handleLogin();
@@ -77,13 +77,17 @@ public class LoginGUI extends JPanel {
      * */
     private void handleBack() {
         idTextField.setText("");
-        passwordField.setText("");
+        passwordField.setText("");                                          //me-reset semua field text dan kembali ke HomeGUI
         MainFrame.getInstance().navigateTo(HomeGUI.KEY);
     }
 
     /**
      * Method untuk login pada sistem.
      * Akan dipanggil jika pengguna menekan "loginButton"
+     * */
+    /**
+     * Mengecek apakah semua field sudah terisi atau belum, jika terisi semua akan memanggil method getSystem dari TP03 untuk mengecek apakah id terdaftar atau tidak
+     * jika terdaftar idnya maka akan dicek passwordnya oleh method authUser apakah sesuai atau tidak, jika sesuai maka method akan mereturn user jika tidak maka akan mereturn null
      * */
     private void handleLogin() {
         if(idTextField.getText().isEmpty() || passwordField.getPassword().length==0){

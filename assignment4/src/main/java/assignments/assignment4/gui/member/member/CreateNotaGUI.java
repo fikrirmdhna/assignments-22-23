@@ -50,45 +50,45 @@ public class CreateNotaGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
-        JPanel panel1 = new JPanel();
-        JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
-        JPanel panel4 = new JPanel();
+        JPanel panel1 = new JPanel();   //untuk tempat paketLabel dan panel3
+        JPanel panel2 = new JPanel();   //untuk tempat beratLabel dan panel4
+        JPanel panel3 = new JPanel();   //untuk tempat paketComboBox dan showPaketButton
+        JPanel panel4 = new JPanel();   //untuk beratTextField dan label kosong
 
         panel1.setLayout(new GridLayout(1,2));
-        panel2.setLayout(new GridLayout(1,2));
-        panel3.setLayout(new GridLayout(1,2));
+        panel2.setLayout(new GridLayout(1,2));      //membuat semua panel dengan gridlayout 1 x 2
+        panel3.setLayout(new GridLayout(1,2));  
         panel4.setLayout(new GridLayout(1,2));
 
         paketLabel = new JLabel("  Paket Laundry:");
         paketComboBox = new JComboBox<String>(new String[]{"Express","Fast","Reguler"});
         showPaketButton = new JButton("Show Paket");
         beratLabel = new JLabel("  Berat Cucian (Kg):");
-        beratTextField = new JTextField();
+        beratTextField = new JTextField();                                                                      //membuat semua properti yang diperlukan dalam CreateNotaGUI
         setrikaCheckBox = new JCheckBox("Tambah Setrika Service (1000 / kg)");
         antarCheckBox = new JCheckBox("Tambah Antar Service (2000 / 4kg pertama, kemudian 500 / kg)");
         createNotaButton = new JButton("Buat Nota");
         backButton = new JButton("Back");
 
         panel3.add(paketComboBox);
-        panel3.add(showPaketButton);
+        panel3.add(showPaketButton); 
 
         panel4.add(beratTextField);
         panel4.add(new JLabel());
-
+                                        //memasukkan properti ke dalam panel sesuai dengan yang diinginkan
         panel1.add(paketLabel);
         panel1.add(panel3);
 
         panel2.add(beratLabel);
         panel2.add(panel4);
 
-        setBorder(BorderFactory.createEmptyBorder(80,50,80,50));
-        setLayout(new GridLayout(6,1,5,5));
+        setBorder(BorderFactory.createEmptyBorder(80,50,80,50));  //membuat batas border untuk JPanel CreateNotaGUI
+        setLayout(new GridLayout(6,1,5,5));                         //mengeset gridlayout 6 x 1 untuk JPanel CreateNotaGUI
 
         add(panel1);
         add(panel2);
-        add(setrikaCheckBox);
-        add(antarCheckBox);
+        add(setrikaCheckBox);           //memasukkan semua properti ke dalam JPanel CreateNotaGUI
+        add(antarCheckBox);         
         add(createNotaButton);
         add(backButton);
         
@@ -99,7 +99,7 @@ public class CreateNotaGUI extends JPanel {
         });
 
         createNotaButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){                 //mengatur event action listener setiap button di CreateNotaGUI
                 createNota();
             }
         });
@@ -134,6 +134,11 @@ public class CreateNotaGUI extends JPanel {
     /**
      * Method untuk melakukan pengecekan input user dan mendaftarkan nota yang sudah valid pada sistem.
      * Akan dipanggil jika pengguna menekan "createNotaButton"
+     * */
+    /**
+     * Mengecek apakah input berat valid atau tidak, dalam method ini implementasinya hampir sama dengan addLoundry di TP03, yaitu
+     * memanggil semua method yang berada di TP03 untuk membuat object Nota dan menambahkan nota (dan juga service yang diinginkan ke dalam nota) ke notaList di member dan NotaManager,
+     * yang berbeda hanya implementasi ke GUI nya
      * */
     private void createNota() {
         // TODO
@@ -170,8 +175,8 @@ public class CreateNotaGUI extends JPanel {
         // TODO
         paketComboBox.setSelectedItem("Express");
         beratTextField.setText("");
-        setrikaCheckBox.setSelected(false);
-        antarCheckBox.setSelected(false);
+        setrikaCheckBox.setSelected(false);                     //mereset semua field text, paketComboBox ke posisi awal, yaitu Express, dan checkbox ke posisi sebelum dipilih
+        antarCheckBox.setSelected(false);                       //dan kembali ke MemberSystemGUI
         MainFrame.getInstance().navigateTo(MemberSystemGUI.KEY);
     }
 }

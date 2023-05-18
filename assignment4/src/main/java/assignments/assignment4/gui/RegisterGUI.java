@@ -33,7 +33,7 @@ public class RegisterGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));   //membuat batas border 
 
         initGUI();
 
@@ -51,7 +51,7 @@ public class RegisterGUI extends JPanel {
         nameTextField = new JTextField();
         phoneLabel = new JLabel("  No. HP: ");
         phoneTextField = new JTextField();
-        passwordLabel = new JLabel("  Password: ");
+        passwordLabel = new JLabel("  Password: ");         //membuat properti yang dibutuhkan dalam register GUI
         passwordField = new JPasswordField();
         registerButton = new JButton("Register");
         backButton = new JButton("Back");
@@ -60,8 +60,8 @@ public class RegisterGUI extends JPanel {
         mainPanel.add(nameLabel);
         mainPanel.add(nameTextField);
         mainPanel.add(phoneLabel);
-        mainPanel.add(phoneTextField);
-        mainPanel.add(passwordLabel);
+        mainPanel.add(phoneTextField);                                           //mengatur letak properti dalam gridlayout 4 x 2
+        mainPanel.add(passwordLabel);                       
         mainPanel.add(passwordField);
         mainPanel.add(registerButton);
         mainPanel.add(backButton);
@@ -70,8 +70,8 @@ public class RegisterGUI extends JPanel {
             public void actionPerformed(ActionEvent e){
                 handleBack();
             }
-        });
-
+        }); 
+                                                                                //mengeset event action listener pada button yang tersedia
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 handleRegister();
@@ -85,7 +85,7 @@ public class RegisterGUI extends JPanel {
      * */
     private void handleBack() {
         nameTextField.setText("");
-        phoneTextField.setText("");
+        phoneTextField.setText("");                         //saat back semua field dikosongkan dan kembali ke HomeGUI
         passwordField.setText("");
         MainFrame.getInstance().navigateTo(HomeGUI.KEY);
     }
@@ -94,6 +94,11 @@ public class RegisterGUI extends JPanel {
     * Method untuk mendaftarkan member pada sistem.
     * Akan dipanggil jika pengguna menekan "registerButton"
     * */
+    /**
+     * Mengecek apakah field ada yang kosong atau tidak, lalu nomor hp yang dimasukkan harus berupa digit
+     * Selanjutnya akan di try me-register member apabila sudah tersedia maka akan mereturn null yang akan dicatch oleh NullPointerException
+     * atau member akan didaftarkan apabila belum terdaftar sebelumnya, setelah berhasil atau gagal mendaftar semua field akan dikosongkan dan kembali ke HomeGUI
+     * */
     private void handleRegister() {
         // TODO
         if(nameTextField.getText().isEmpty() || phoneTextField.getText().isEmpty() || passwordField.getPassword().length==0){
