@@ -21,6 +21,7 @@ public class LoginGUI extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton backButton;
+    private JCheckBox showPasswordCheckBox;
     private LoginManager loginManager;
 
     public LoginGUI(LoginManager loginManager) {
@@ -29,7 +30,7 @@ public class LoginGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50)); //membuat batas border
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(70, 70, 70, 70)); //membuat batas border
 
         initGUI();
 
@@ -46,27 +47,38 @@ public class LoginGUI extends JPanel {
         idLabel = new JLabel("  Masukkan ID Anda: ");
         idTextField = new JTextField();
         passwordLabel = new JLabel("  Masukkan password Anda: ");           //membuat properti yang dibutuhkan LoginGUI
-        passwordField = new JPasswordField();
+        passwordField = new JPasswordField();                                    //dan menambahkan fitur Show Password
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
+        showPasswordCheckBox = new JCheckBox("Show Password");
 
-        mainPanel.setLayout(new GridLayout(3,2,5,5));
+        mainPanel.setLayout(new GridLayout(4,2,5,5));
+
         mainPanel.add(idLabel);
         mainPanel.add(idTextField);
-        mainPanel.add(passwordLabel);                                            //mengeset letak properti dalam gridlayout 3 x 2 
+        mainPanel.add(passwordLabel);                                            //mengeset letak properti dalam gridlayout 4 x 2 
         mainPanel.add(passwordField);
+        mainPanel.add(new JLabel());
+        mainPanel.add(showPasswordCheckBox);
         mainPanel.add(loginButton);
         mainPanel.add(backButton);
+
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 handleBack();
             }
         });
-                                                                                //mengatur event action listener untuk setiap button
+                                                                                
         loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){                         //mengatur event action listener untuk setiap button
                 handleLogin();
+            }
+        });
+
+        showPasswordCheckBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                passwordField.setEchoChar(showPasswordCheckBox.isSelected()?'\u0000':'\u2022');
             }
         });
     }
@@ -77,7 +89,9 @@ public class LoginGUI extends JPanel {
      * */
     private void handleBack() {
         idTextField.setText("");
-        passwordField.setText("");                                          //me-reset semua field text dan kembali ke HomeGUI
+        passwordField.setText("");
+        showPasswordCheckBox.setSelected(false);                                          //me-reset semua field text dan kembali ke HomeGUI
+        passwordField.setEchoChar('\u2022');
         MainFrame.getInstance().navigateTo(HomeGUI.KEY);
     }
 
@@ -104,6 +118,8 @@ public class LoginGUI extends JPanel {
             }
             idTextField.setText("");
             passwordField.setText("");
+            showPasswordCheckBox.setSelected(false);  
+            passwordField.setEchoChar('\u2022');
         }
     }
 }

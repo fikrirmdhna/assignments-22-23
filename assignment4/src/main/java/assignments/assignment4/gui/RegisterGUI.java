@@ -26,6 +26,7 @@ public class RegisterGUI extends JPanel {
     private JButton registerButton;
     private LoginManager loginManager;
     private JButton backButton;
+    private JCheckBox showPasswordCheckBox;
 
     public RegisterGUI(LoginManager loginManager) {
         super(new BorderLayout()); // Setup layout, Feel free to make any changes
@@ -33,7 +34,7 @@ public class RegisterGUI extends JPanel {
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));   //membuat batas border 
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(70, 70, 70, 70));   //membuat batas border 
 
         initGUI();
 
@@ -52,17 +53,20 @@ public class RegisterGUI extends JPanel {
         phoneLabel = new JLabel("  No. HP: ");
         phoneTextField = new JTextField();
         passwordLabel = new JLabel("  Password: ");         //membuat properti yang dibutuhkan dalam register GUI
-        passwordField = new JPasswordField();
+        passwordField = new JPasswordField();                     //dan menambahkan fitur Show Password
         registerButton = new JButton("Register");
         backButton = new JButton("Back");
+        showPasswordCheckBox = new JCheckBox("Show Password");
 
-        mainPanel.setLayout(new GridLayout(4,2,5,5));
+        mainPanel.setLayout(new GridLayout(5,2,5,5));
         mainPanel.add(nameLabel);
         mainPanel.add(nameTextField);
         mainPanel.add(phoneLabel);
-        mainPanel.add(phoneTextField);                                           //mengatur letak properti dalam gridlayout 4 x 2
+        mainPanel.add(phoneTextField);                                           //mengatur letak properti dalam gridlayout 5 x 2
         mainPanel.add(passwordLabel);                       
         mainPanel.add(passwordField);
+        mainPanel.add(new JLabel());
+        mainPanel.add(showPasswordCheckBox);
         mainPanel.add(registerButton);
         mainPanel.add(backButton);
 
@@ -71,10 +75,16 @@ public class RegisterGUI extends JPanel {
                 handleBack();
             }
         }); 
-                                                                                //mengeset event action listener pada button yang tersedia
+                                                                                
         registerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){                         //mengeset event action listener pada button yang tersedia
                 handleRegister();
+            }
+        });
+
+        showPasswordCheckBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                passwordField.setEchoChar(showPasswordCheckBox.isSelected()?'\u0000':'\u2022');
             }
         });
     }
@@ -85,8 +95,10 @@ public class RegisterGUI extends JPanel {
      * */
     private void handleBack() {
         nameTextField.setText("");
-        phoneTextField.setText("");                         //saat back semua field dikosongkan dan kembali ke HomeGUI
+        phoneTextField.setText("");                         //saat back semua field dikosongkan, mengembalikan char password, dan kembali ke HomeGUI
         passwordField.setText("");
+        showPasswordCheckBox.setSelected(false);  
+        passwordField.setEchoChar('\u2022');
         MainFrame.getInstance().navigateTo(HomeGUI.KEY);
     }
 
@@ -114,6 +126,8 @@ public class RegisterGUI extends JPanel {
                     nameTextField.setText("");
                     phoneTextField.setText("");
                     passwordField.setText("");
+                    showPasswordCheckBox.setSelected(false);  
+                    passwordField.setEchoChar('\u2022');
                     MainFrame.getInstance().navigateTo(HomeGUI.KEY);
                 }
             } else JOptionPane.showMessageDialog(this, "Nomor hp hanya menerima digit!", "Registrasi Gagal!", JOptionPane.ERROR_MESSAGE);
